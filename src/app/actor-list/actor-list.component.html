@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">List of porn actor</h1>
+      <p class="lead">This list we allows to remember the goods actress see in our live.</p>
+    </div>
+  </div>
+  <table class="table">
+    <tr>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Link google</th>
+      <th scope="col">Operations</th>
+    </tr>
+    <tr *ngFor="let actor of _actorList">
+      <td scope="row" class="font-weight-bold">{{actor.firstName}}</td>
+      <td>{{actor.lastName}}</td>
+      <td><a href="{{actor.linkGoogle}}" target="_blank">Google</a></td>
+      <td>
+        <button class="btn btn-primary" style="margin-right: 10px;">Update</button>
+        <button class="btn btn-danger" (click)="deleteActor(actor.firstName, actor.lastName)">Delete</button>
+      </td>
+    </tr>
+  </table>
+
+  <hr/>
+  <button class="btn btn-primary" (click)="open(content)">Add actress</button>
+  <hr/>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add actress</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>First name</label>
+        <input class="form-control" type="text" placeholder="Last Name" [(ngModel)]="tmpLastName"/>
+      </div>
+      <div class="form-group">
+        <label>Last name</label>
+        <input class="form-control" type="text" placeholder="First Name" [(ngModel)]="tmpFirstName"/>
+      </div>
+      <div class="form-group">
+        <label>Link google</label>
+        <input class="form-control" type="text" placeholder="Link Google" [(ngModel)]="tmpLinkGoole"/>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('Save click');addActor();">Add actress</button>
+    </div>
+  </ng-template>
+  <pre>{{ closeResult }}</pre>
+</div>
